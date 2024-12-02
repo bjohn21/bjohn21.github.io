@@ -1,0 +1,9 @@
+---
+title: "Snow Hydrology Study for Yellowstone National Park"
+author: "Billy Johnson"
+format: html
+---
+
+## Year long Snow Hydrology Project
+
+Focus was on Yellowstone National Park. Data was pulled from the Iowa state Mesonet, Snotel and USGS

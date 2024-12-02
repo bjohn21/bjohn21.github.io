@@ -1,5 +1,19 @@
 project:
-  title: "bjohn21.github.io"
+  type: website
+  output-dir: docs
+
+website:
+  title: "William 'Billy' Johson"
+  navbar:
+    left:
+      - href: bjohn21.github.io.qmd
+        text: Home
+      - snow_hydro.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
 
 editor: visual
-

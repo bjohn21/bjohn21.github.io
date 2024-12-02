@@ -1,14 +1,21 @@
 ---
-title: "bjohn21.github.io"
+title: "William 'Billy' Johnson"
+image: Images/485A1992.jpg
+about:
+  template: trestles
+  links: 
+    - text: LinkedIn
+      href: https://www.linkedin.com/in/johnsonbwilliam/
+    - text: GitHub
+      href: https://github.com/bjohn21
 project:
-type: website
-output-dir: docs
+  type: website
+  output-dir: docs
 ---
 
-## Quarto
+## Introduction
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+Welcome to my website. My name is William 'Billy' Johnson, and this is where I showcase my work.
 
-```{r}
-1 + 1
-```
+![William's Image](Images/485A1992.jpg)
+
