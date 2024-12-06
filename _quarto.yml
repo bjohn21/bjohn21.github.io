@@ -3,17 +3,35 @@ project:
   output-dir: docs
 
 website:
-  title: "William 'Billy' Johson"
+  title: "William 'Billy' Johnson"
   navbar:
     left:
-      - href: bjohn21.github.io.qmd
+      - href: index.qmd
         text: Home
-      - snow_hydro.qmd
+      - text: Snow Hydrology
+        menu:
+          - text: Overview
+            href: snow_hydro.qmd
+          - text: Geospatial
+            href: Geospatial.qmd
+          - text: Cloud Cover and Precipitation
+            href: CloudCover.qmd
+          - text: Trace Events, Precipitation Under Catch and Probability of Snow
+            href: Trace.qmd
+          - text: Accumulation, Fresh Snow and Albedo
+            href: Accumulation.qmd
+          - text: Canopy Interception
+            href: Canopy.qmd
+          - text: Densification & Metamorphism
+            href: metemorphism.qmd
+          - text: Redistribution
+            href: redistribution.qmd
 
 format:
   html:
-    theme: cosmo
+    theme: Superhero
     css: styles.css
     toc: true
 
 editor: visual
+

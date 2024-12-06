@@ -1,0 +1,302 @@
+---
+title: "Densification & Metamorphism"
+---
+
+Billy Johnson Dr Fassnacht October 31, 2024 WR 574 Snow Hydrology
+
+Assignment 8. Densification and Metamorphism
+
+Methods
+
+```         
+To begin analysis on snowpack metamorphism the approach that I decided to take was to build a function.  I began with creating a data frame to store the results from my calculations. I then was able to say if air temperatures are below 0°C & snow is falling then compute the Hedstrom and Pomeroy 1998 equation (equation 1). I then created an if statement to say only get SWE when there is snow. Finally in that first function I calculated the snow depth with the relationship between SWE and density. 
+```
+
+Within that stored dataset I created a loop to iterate through each observation in the results. With this I was able to create a lag column with the density and SWE that combined the previous time steps. I set the max density at 300 kg/m3 & set kd = 0.01 as a coefficient, using Verseghy’s 1991 first order decay function (equation 2). With the density of old snow and the old snow SWE from the previous time step I was able to calculate the old snow depth to move on to the final part. The final if function that I created to calculate the snowpack metamorphism I stated if temperatures are below 0°C to stop rain from being added I kept all observations of old snow. With old snow SWE and depth because we can add those together to sum up the whole year, I was able to calculate the combined density (figure 2). The final part was getting fresh snowfall from a previous assignment and combine that with the total snow depth with metamorphism (figure 1.)
+
+To complete the analysis comparing the estimated bulk density from the SNOTEL data with a computed density from Sturm et al 2010 (equation 3). I used given values according to an alpine environment to fill in rho max and rho original. Using those given value, I was able to calculate the computed density from Sturm et al 2010. I finally combined the two time series plots (figure 3.)
+
+Results
+
+        
+After computing the total snow depth with metamorphism, we can see that the peak of snow depth at Parker Peak in Yellowstone National Park was about 1,000 mm. This station is located at 9400 feet in elevation. The fresh snow throughout the year cumulated to give use a total of 4,000 mm in snowfall throughout the year (figure 1).  
+
+![Figure 1. Line plot showing snow depth over the water year. Metamorphism acting on the blue line while red shows the fresh snow that falls throughout the year in Yellowstone National Park](Images/Metemorphism/figure1.jpg)
+
+Using the computed total depth with metamorphism I was able to calculate bulk density. The density max wax a set 300 kg/m3. Figure 2 shows the snowpack until it is melted in late June.
+
+
+![Figure 2. Total snow depth with metamorphism over the year at Yellowstone National Park with computed bulk density shown as well. To help with scaling bulk density it divided by 100](Images/Metemorphism/figure2.jpg)
+
+The final part of this analysis was to compare the computed density to the estimated bulk density. We see that the Sturm et al 2010 computed density is much higher at the end of the year than our estimated bulk density. The estimated bulk density has a limit on the max rho as well.
+
+![Figure 3. Time series plot showing the bulk density over time compared with the calculated density using equation from Strum et al 2010] (Images/Metemorphism/figure3.jpg)
+
+Discussion
+
+```         
+Overall, when looking at the computed snow depth with metamorphism one thing that I would expect is the peak snow depth to be much higher (figure 1). This area in Yellowstone receives a good amount of snow. The position of this SNOTEL station may have a big impact on the amount of snow accumulated at the station compared with the rest of the park. Another thing that I find weird about my computed total snow depth is why it doesn’t melt off. My line stays at 1000 mm of snow until the end of June. The addition of snowfall is correlated with the increase in snow depth, so I know that this analysis has worked well. When there is no new snow being accumulated the snowpack goes down as well (figure 1). 
+
+When discussing the bulk density and total snow depth with metamorphism we can see a few instances we see direct correlation between a big increase in snowpack which would indicate that fresh snow is falling the density of snow goes way down. At the end of the year when we would expect not as much new snow to fall, and temperatures are bgining to rise we find that the density is very constant around 300 kg/m3 (figure 2.) 
+
+Finally, within the comparison between our estimated bulk density and the computed density with Sturm 2010 equation we see that the computed equation is a much higher estimation of density (figure 3). My estimated bulk density does start very high, but this can be expected with snowfall in the fall when temperatures are still relatively warm. In the peak season we find that there are many mor instances when the density drops but with snow on the ground the density only drops to about 180 kg/m3 which seems a bit high but when thinking about it this is reasonable as this is a bulk density with all layers of snow. 
+```
+
+Equations 1. s = 67.92 + 51.25 e(Ts/2.59) 2. s(t) = \[s(t-1) - s-max\] e -kdt + s-max 3. s = (s-max - s-0) \[ 1 – e-k1 x ds – k2 X DOY\] + s-0
+
+### Load in the Packages
+
+```{r}
+source("Setup_WR574 copy.R")
+```
+
+### Load in the data
+
+```{r}
+# Soda Butte Cr at Park Boundary at Silver Gate (06187915)
+sitenumber <- "06187915"
+parametercd <- c("00060", "00010")
+startdate <- "2023-09-01"
+enddate <- "2024-08-31"
+
+rawUSGSdata <- readNWISdv(sitenumber, parametercd, startdate, enddate)
+
+```
+
+ASOS data PNA
+
+```{r}
+# ASOS RAMOS Yellowstone
+ASOS_yellowstone_original <- read_csv("DataIn/P60.csv")
+
+ASOS_clean <- read_csv("DataOut/ASOS_clean.csv")
+
+ASOS_clean_2 <- read_csv("DataOut/ASOS_clean_2.csv")
+
+ASOS_accumulation_fresh <- read_csv("DataOut/ASOS_accumulation_fresh.csv")
+```
+
+SNOTEL data location: Parker Peak (683)
+
+```{r}
+SNOTEL_Parker <- read_csv("DataIn/683_STAND_WATERYEAR=2024_clean.csv")
+
+SNOTEL_Parker_clean <- read_csv("DataOut/Snotel_clean.csv")
+```
+
+------------------------------------------------------------------------
+
+# Questions
+
+## 1. Snowpack Metamorphism (using ASOS hourly data):
+
+-   Assume a bulk snowpack, i.e., only new (fresh) and old snow. -Use the first order exponential function to model the densification of a snowpack. -Chose an appropriate maximum snowpack density by considering the maximum density at peak SWE from the SNOTEL station or the Pomeroy and Gray \[1995\] formulation. Note that the rate of densification can also be altered. -Allow the new snow to fall at its fresh snow density and determine the net snowpack depth as a function of the old snow and new snow. -On one plot show the snow depth with metamorphism that you computed in the question and the hourly fresh snow depth or snowfall from the previous assignment. (This is analogous to SNOTEL question in the previous assignment). The units for depth are meters. -On a second plot show the hourly bulk snow pack density (in kg/m3).
+
+# Clean up a couple data sheets to use for the rest of the year
+
+```{r}
+
+ASOS_accumulation_new <- ASOS_yellowstone_original %>% 
+  select(c(valid, tmpf, p01i, relh, sknt)) %>% 
+  mutate(tmp_c = (5/9 * (tmpf - 32))) %>% 
+  mutate(Td = tmp_c - ((100 - relh)/5)) %>% 
+  mutate(P_mm = p01i * 25.4) %>% 
+  mutate(HP_fresh_snow = case_when(
+    tmp_c < 0 & P_mm > 0 ~ 67.92 + 51.25 * exp(tmp_c / 2.59),
+    tmp_c >= 0 & P_mm > 0 ~ 1000,
+    TRUE ~ 0
+  )) %>% 
+  mutate(snowfall = case_when(
+    HP_fresh_snow == 0 ~ 0,
+    TRUE ~ (P_mm / HP_fresh_snow) * 1000
+  ))
+
+ASOS_winter_month <- ASOS_accumulation_new %>%
+  filter(valid >= "2023-10-01" & valid <= "2024-06-30")
+
+ASOS_winter_month <- ASOS_winter_month %>% 
+  mutate(precip_type = case_when(
+    tmp_c < 0 & P_mm > 0 ~ "snow",
+    tmp_c > 0 & P_mm > 0 ~ "rain",
+    TRUE ~ "No Precip"
+  ))
+
+
+ASOS_winter_month <- ASOS_winter_month %>% 
+  mutate(fresh_rho = case_when(
+    precip_type == "snow" ~ HP_fresh_snow,
+    precip_type == "rain" ~ 1000,
+    TRUE ~ 0
+  )) %>% 
+  mutate(d_fresh = P_mm/fresh_rho)
+```
+
+```{r}
+calculate_snow_properties <- function(data) {
+  # Initialize the calculation with first row values
+  result <- data %>%
+    # First calculate fresh snow density and initial values
+    mutate(
+      # Fresh snow density and SWE calculations
+      fresh_snow_density = case_when(
+        tmp_c < 0 & P_mm > 0 ~ 67.92 + 51.25 * exp(tmp_c / 2.59),
+        TRUE ~ 0  # No fresh snow density for rain or no precip
+      ),
+      # Fresh snow SWE is only from snow, not rain
+      fresh_snow_swe = case_when(
+        tmp_c < 0 & P_mm > 0 ~ P_mm,  # Only count SWE when it's snow
+        TRUE ~ 0
+      ),
+      # Fresh snow depth
+      fresh_snow_depth = case_when(
+        fresh_snow_density > 0 ~ (fresh_snow_swe / fresh_snow_density) * 1000,
+        TRUE ~ 0
+      )
+    )
+  
+  # Initialize columns for the iterative calculation
+  result$old_snow_density <- 0
+  result$old_snow_swe <- 0
+  result$old_snow_depth <- 0
+  result$total_snow_depth <- 0
+  result$total_swe <- 0
+  result$combined_density <- 0
+  
+  # Iterate through the rows to calculate time-dependent values
+  for(i in 2:nrow(result)) {
+    # Previous time step values
+    prev_combined_density <- result$combined_density[i-1]
+    prev_total_swe <- result$total_swe[i-1]
+    
+    # Calculate old snow density using the equation
+    max_density <- 300  # kg/m3
+    k <- 0.01
+    
+    result$old_snow_density[i] <- if(prev_combined_density > 0) {
+      (prev_combined_density - max_density) * exp(-k) + max_density
+    } else {
+      0
+    }
+    
+    # Old snow SWE is the previous total SWE
+    result$old_snow_swe[i] <- prev_total_swe
+    
+    # Calculate old snow depth
+    result$old_snow_depth[i] <- if(result$old_snow_density[i] > 0) {
+      (result$old_snow_swe[i] / result$old_snow_density[i]) * 1000
+    } else {
+      0
+    }
+    
+    # Calculate total depth and SWE only when temperature is below freezing
+    # This prevents rain from being added to the snowpack
+    if(result$tmp_c[i] >= 0) {
+      # If temperature is above freezing, only keep old snow (with metamorphism)
+      result$total_snow_depth[i] <- result$old_snow_depth[i]
+      result$total_swe[i] <- result$old_snow_swe[i]
+    } else {
+      # If temperature is below freezing, add fresh snow to old snow
+      result$total_snow_depth[i] <- result$fresh_snow_depth[i] + result$old_snow_depth[i]
+      result$total_swe[i] <- result$fresh_snow_swe[i] + result$old_snow_swe[i]
+    }
+    
+    # Calculate combined density for next time step
+    result$combined_density[i] <- if(result$total_snow_depth[i] > 0) {
+      (result$total_swe[i] / result$total_snow_depth[i]) * 1000
+    } else {
+      0
+    }
+  }
+  
+  return(result)
+}
+
+# Apply the calculation to your ASOS data
+ASOS_snow_calcs <- calculate_snow_properties(ASOS_winter_month)
+```
+
+# Fresh SNow vs Total snow with Metamorphism
+
+```{r}
+ggplot() +
+  geom_line(data = ASOS_snow_calcs, aes(x = valid, y = total_snow_depth, color = "Total Snow with Metamorphism")) +
+  geom_line(data = ASOS_accumulation_new, aes(x = valid, y = cumsum(snowfall), color = "Fresh Snow")) +
+  scale_y_continuous(
+    name = "Total Snow Depth",
+    sec.axis = sec_axis(~., name = "Fresh Snow")
+  ) +
+  scale_color_manual(values = c("Total Snow with Metamorphism" = "blue", "Fresh Snow" = "red")) +
+  labs(
+    x = "Date",
+    color = "Types of Snow"
+  ) +
+  theme_linedraw()+
+    theme(
+  legend.position = c(0.25,0.80),
+  legend.background = element_rect(fill = "white", color = "black")
+)
+```
+
+```{r}
+ASOS_snow_calcs <- ASOS_snow_calcs %>%
+  mutate(bulk_density = if_else(is.finite(total_swe / total_snow_depth), 
+                                total_swe / total_snow_depth, 
+                                0)) %>% 
+  mutate(bulk_density = bulk_density * 1000)
+```
+
+```{r}
+ggplot() +
+  geom_line(data = ASOS_snow_calcs, 
+            aes(x = valid, y = total_snow_depth, color = "Total Snow Depth with Metamorphism")) +
+  geom_line(data = ASOS_snow_calcs, 
+            aes(x = valid, y = total_swe, color = "Total SWE")) +
+  geom_line(data = ASOS_snow_calcs,
+            aes(x = valid, y = combined_density, color = "Bulk Density")) +
+  scale_y_continuous(
+    name = "Snow Depth (cm)",
+    sec.axis = sec_axis(~./100, name = "Bulk Density (kg/m3)")
+  ) +
+  scale_color_manual(
+    values = c("Total Snow Depth with Metamorphism" = "blue", 
+               "Total SWE" = "red", 
+               "Bulk Density" = "orange")
+  ) +
+  labs(
+    x = "Date",
+    color = "Measurement Type"
+  ) +
+  theme_linedraw() +
+  theme(legend.position = "bottom")
+```
+
+## 2. SNOTEL Metamorphism Modeling: Compare the estimated bulk snowpack density from your SNOTEL data (previous assignment) to a computed density using a formulation from Mizukami and Perica (2008), Sturm et al. (2010), or Sexstone and Fassnacht (2014).
+
+```{r}
+psmax <- 597.5
+ps0 <- 223.7
+k1 <- 0.0012
+k2 <- 0.0038
+
+ASOS_snow_calcs <- ASOS_snow_calcs %>% 
+  mutate(day_of_year = yday(valid)) %>% 
+  mutate(day_of_year = ifelse(day_of_year > 273, day_of_year - 365, day_of_year))
+
+# Strum
+ASOS_snow_calcs <- ASOS_snow_calcs %>% 
+  mutate(strum_density = (psmax - ps0)*(1 - exp(-k1 * total_snow_depth - k2 * day_of_year)) + ps0)
+
+ggplot()+
+  geom_line(data = ASOS_snow_calcs, aes(x = valid, y = combined_density, color = "Bulk Density"))+
+  geom_line(data = ASOS_snow_calcs, aes(x = valid, y = strum_density, color = "Calculated Density (Strum et al 2010"))+
+  labs(
+    color = "Snow Density Type",
+    y = "Density (kg/m3)",
+    x = "Date"
+  )+
+  theme_linedraw()+
+  theme(
+  legend.position = c(0.75,0.20),
+  legend.background = element_rect(fill = "white", color = "black")
+)
+```

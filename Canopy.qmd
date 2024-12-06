@@ -1,0 +1,164 @@
+---
+title: "Canopy Interception"
+---
+Billy Johnson
+Dr Fassnacht
+October 16, 2024
+WR 574 Snow Hydrology
+
+Canopy Interception
+
+Canopy Interception Observations: 
+
+When going outside here in Northern Colorado the deciduous tree that occurs in big quantities in Fort Collins CSU campus was the Bur Oak (Quercus macrocarpa). This tree has big leaves creating a big leaf area index for a smaller tree. The branches are big a strong and do not have a lot of flexibility.  When rain falls on the canopy of these Oak trees there can be a big difference in the amount of rain interception based on the time of year. As these trees lose their leaves in the fall and don’t grow them again until the summer there are periods on both sides that may have rain events that do not intercept rain at all. When the Oak tree is in full bloom the big broad leaves on the tree will hold more water. There can be more evaporation from the exposed water droplets. With the broad leaf trees there is more potential for transpiration and the tree may use those broad leaves to capture water for growth. When snowfall interacts with these deciduous trees generally there isn’t much interception. If we have early or late storm events these trees can hold a lot more snow on their leaves and this can cause limbs to break as the branches are not flexible enough to shed snow.  
+	In contrast Colorado is also home to various species of evergreen trees. The Blue Spruce (Picea pungens) is an evergreen tree that contains single needles. The branches on these trees are big and flexible and most are positioned with a downward trajectory. The canopy from this tree goes all the way down to the ground. When rainfalls on these trees there isn’t much rainfall retention. The rain droplets will shed down the needles and will drip down the tree. The canopy is much denser in these trees but with the shape of these needles they can shed water. This also contradicts when the snow begins to fall. As these trees do not lose their leaves during the winter months when big snow events come the tree will capture much more snow. The big flexible branches allow the tree to shed snow when the weight is too much. 
+	In relation to the Blue Spruce another evergreen tree that is found in Colorado is the Rocky Mountain Juniper tree (Juniperus scopulorum). This is another tree with needle like foliage. These needles are much thinner and smaller and are not as strong as the Blue Spruce. Unlike the Blue Spruce most of the canopy for these trees is located towards the top of the tree. With the characteristics of the foliage on these trees we can infer that they are not good at intercepting rainfall. The leaves are not big enough to capture and hold rainfall. These trees will shed rainfall throughout the year. In comparison to the Blue Spruce when snow begins to fall in Colorado the Juniper tree will not lose its foliage. This will allow for the tree to capture more snowfall than rain. This tree on the other hand is very tall and thin and will not capture as much snow as the blue spruce. The branches are not directed downwards, and it doesn’t appear to be built like it would shed heavy amounts of snow but because of the characteristic the tree wouldn’t capture enough snow to break limbs but does capture more snow than a common deciduous tree. 
+	
+
+
+
+1.	Canopy Interception Modeling: 
+
+•	Assume one vegetation type for the vegetated portion of your watershed (% vegetated estimated in the second assignment).
+o	Shrub & evergreen ~ 90% 
+
+•	With a constant leaf area index for the winter and another for the summer (assume June 1st), determine the amount of interception during each storm event, using T=0oC as the threshold between rain and snow. 
+o	Winter ~ LAI = 0.5
+o	Summer ~ LAI = 4
+
+To begin analysis on this problem the first thing that I had to do was define the constant variables. I used table 7-1 (Scurlock et al, 2001) that had approximate LAI for different species of trees. Because my watershed contained 53% shrubs and 37% evergreen I used the seasonal shrubs LAI for this problem. The max LAI was 4 and the min was 0.5. I claimed that the fraction of area covered was 90%. I used the threshold of 0°C for determining rain vs snow. The entire area of my watershed is 80 km2. After I defined all my constants, I was able to being data cleaning. I first labeled each observation as summer or winter, and then defined the leaf area index to winter or summer as well. I then went through and filled a IF statement that asked if it was colder than 0°C then label it as rain or snow accordingly. After this I applied a common interception equation (P_mm x LAI x fraction_veg). Finally, I averaged the monthly interception values and cleaned the results in table 1. 
+    
+Table 1. Table shows the interception values for shrub and evergreen vegetation at Yellowstone National Park for water year 2023. 
+Month	Total Interception (mm)	Average Monthly Interception (mm)	Average Interception Per Storm (mm)
+Jan	1.14E-01	1.57E-04	1.63E-03
+Feb	0	0	0
+Mar	3.43E-01	4.62E-04	2.29E-03
+Apr	5.72E-01	1.05E-03	1.14E-02
+May	3.43E+00	5.68E-03	4.40E-02
+Jun	5.49E+00	7.97E-03	2.61E-01
+Jul	0	0	0
+Aug	2.74E+00	6.52E-03	1.61E-01
+Sep	1.37E+00	2.11E-03	2.98E-02
+Oct	0	0	0
+Nov	4.57E-01	6.73E-04	8.63E-03
+Dec	0	0	0
+
+	Results: Through this analysis we found that June had the highest average monthly interception at 7.97E-03 mm. There are a considerable number of months that didn’t record any interception. All the values calculated throughout the year are relatively low. August and November both produced interception values that resulted very close, around 6.5E-03 (table 1). 
+
+
+
+	Discussion: With these results in mind, having the highest month of interception be June makes some sense. With the increased amount of foliage in the summer and with most of the vegetation cover being shrubs then those plants will be in full bloom at this point. With previous assignment we know there was a recorded snow event in June. This could be the cause of the higher interception values with snow falling on vegetation with max leaf area index. When going through the process of calculating the interception these values showed up very low. Review of analysis will be needed to further quantify these results. There are many results that developed 0 for the interception. I can infer that this is not correct because those months will have had precipitation events. July resulted in a zero, but this is a month that would have high vegetation and a high LAI suggesting that there would be more interception than 0. 
+
+
+
+
+
+### Load in the packages
+
+```{r}
+source("Setup_WR574 copy.R")
+```
+
+### Load in the data
+
+Pine Creek USGS
+
+```{r}
+# Soda Butte Cr at Park Boundary at Silver Gate (06187915)
+sitenumber <- "06187915"
+parametercd <- c("00060", "00010")
+startdate <- "2023-09-01"
+enddate <- "2024-08-31"
+
+rawUSGSdata <- readNWISdv(sitenumber, parametercd, startdate, enddate)
+
+```
+
+ASOS data PNA
+
+```{r}
+# Station number P60
+ASOS_yellowstone_original <- read_csv("DataIn/P60.csv")
+
+ASOS_CC <- read_csv("DataIn/CloudCover.csv")
+
+# ASOS station in Montana. Station = West Yellowstone (WYS)
+West_Yellow_Cloud <- read_csv("DataIn/WestYellowstone_CloudCover.csv")
+
+West_yellow_original <- read_csv("DataIn/WYS.csv")
+```
+
+SNOTEL data location: Parker Peak (683)
+
+```{r}
+SNOTEL_Parker <- read_csv("DataIn/683_STAND_WATERYEAR=2024_clean.csv")
+```
+
+------------------------------------------------------------------------
+
+# Workflow
+
+```{r}
+# Clean the data and save the new dataframe
+ASOS_accumulation <- ASOS_yellowstone_original %>% 
+  select(c(valid, tmpf, p01i, relh, sknt)) %>% 
+  mutate(tmp_c = (5/9 * (tmpf - 32))) %>% 
+  mutate(Td = tmp_c - ((100 - relh)/5)) %>% 
+  mutate(P_mm = p01i * 25.4)
+  
+ASOS_accumulation_clean <- ASOS_accumulation %>% 
+  filter(tmp_c < 0 & Td < 0) %>% 
+  filter(p01i > 0) %>% 
+  filter(sknt < 10)
+
+# Add a column that calculates the cumulative sum
+ASOS_accumulation_clean <- ASOS_accumulation_clean %>% 
+  mutate(P_mm = p01i * 24.5) %>% 
+  mutate(cumm_prec = cumsum(P_mm)) 
+
+
+write_csv(ASOS_accumulation_clean, file = "DataOut/ASOS_clean.csv")
+```
+
+```{r}
+
+# Define constants
+LAI_winter <- 0.5
+LAI_summer <- 4
+f_veg <- 0.9  
+threshold_temp <- 0  
+area_km2 <- 80.03063
+area_veg_km2 <- area_km2 * f_veg  
+
+# Calculate interception
+ASOS_accumulation_2 <- ASOS_accumulation %>%
+  mutate(
+    season = if_else(month(valid) == 6, "summer", "winter"),  
+    LAI = if_else(season == "summer", LAI_summer, LAI_winter),  
+    precipitation_type = if_else(tmp_c >= threshold_temp, "rain", "snow"),  
+    interception = case_when(
+      precipitation_type == "rain" ~ P_mm * LAI * f_veg,
+      precipitation_type == "snow" ~ P_mm * LAI * f_veg,
+      TRUE ~ 0
+    ),
+    # Set interception to zero 6 hours after the storm
+    interception = if_else(valid %in% (valid + hours(6)), 0, interception)
+  )
+
+# Step 4: Calculate monthly averages
+Monthly_Interception <- ASOS_accumulation_2 %>%
+  group_by(month = month(valid, label = TRUE), year = year(valid)) %>%
+  summarize(
+    total_interception_all = sum(interception, na.rm = TRUE),
+    total_hours = n(),
+    avg_interception_all = total_interception_all / total_hours,
+    total_interception_storm = sum(interception[P_mm > 0], na.rm = TRUE), 
+    storm_hours = sum(P_mm > 0),  
+    avg_interception_storm = if_else(storm_hours > 0, total_interception_storm / storm_hours, 0) 
+  )
+
+
+
+write_csv(Monthly_Interception, file = "DataOut/Monthly_Interception.csv")
+tibble(Monthly_Interception)
+```

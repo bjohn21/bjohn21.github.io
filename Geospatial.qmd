@@ -1,0 +1,13 @@
+---
+title: "Geospatial Analysis"
+---
+
+## Yellowstone National Park and The Stations Used in this Project, land cover analysis
+
+![Location Map](Images/geospatial/LocationMap.jpg)
+
+![Land Cover Map](Images/geospatial/LandCoverMap.jpg)
+
+Land cover data was obtained from the NLCD a output from the United States Geological Survey
+
+![Histogram of Land Cover](Images/geospatial/LandCoverHistogram.jpg)

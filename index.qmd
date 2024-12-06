@@ -1,0 +1,21 @@
+---
+title: "William 'Billy' Johnson"
+image: Images/485A1992.jpg
+about:
+  template: trestles
+  links: 
+    - text: LinkedIn
+      href: https://www.linkedin.com/in/johnsonbwilliam/
+    - text: GitHub
+      href: https://github.com/bjohn21
+project:
+  type: website
+  output-dir: docs
+---
+
+## Introduction
+
+Welcome to my website. My name is William 'Billy' Johnson, and I am a graduate student at Colorado State University, in the professional masters of science program with a focus on Water Resources. This website is an area to showcase my work with data analysis in hydrology and related feilds. 
+
+![William's Image](Images/485A1992.jpg)
+

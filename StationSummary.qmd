@@ -1,0 +1,27 @@
+---
+title: "Site Selection and Station Summary"
+---
+
+## Site Selection & Station Summary (assignment 1)
+
+| Parameter                        | Value                         |
+|----------------------------------|-------------------------------|
+| Location of Station (state)      | Wyoming                       |
+| Meteorological Station Name      | RAMOS as Yellowstone          |
+| Meteorological Station Code      | 72034594086                   |
+| Meteorological Station Latitude  | 42.795556                     |
+| Meteorological Station Longitude | -109.807222                   |
+| Meteorological Station Elevation | 2713 meters                   |
+| SNOTEL Station Name              | Parker Peak                   |
+| SNOTEL Station Number            | 643                           |
+| SNOTEL Station Latitude          | 43.01                         |
+| SNOTEL Station Longitude         | -109.76                       |
+| SNOTEL Station Elevation         | 2865.12 meters                |
+| Hydrometric Station Name         | Pine Creek Above Fremont Lake |
+| Hydrometric Station Number       | 09196500                      |
+| Basin Area                       | 197.6161 km²                  |
+| Hydrometric Station Latitude     | 43.027056                     |
+| Hydrometric Station Longitude    | -109.773528                   |
+| Hydrometric Station Elevation    | 2270.76 meters                |
+| Precip. Gauge Type               | Cannot Find this Info         |
+| Precip. Gauge Shield             | Cannot Find this Info         |

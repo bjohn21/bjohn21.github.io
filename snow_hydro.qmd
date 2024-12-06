@@ -4,6 +4,10 @@ author: "Billy Johnson"
 format: html
 ---
 
+![Field Activites in the Mountians](Images/skinning.jpeg)
+
 ## Year long Snow Hydrology Project
 
-Focus was on Yellowstone National Park. Data was pulled from the Iowa state Mesonet, Snotel and USGS
+This is page presents a year long snow hydrology project from my graduate degree. This class was at Colorado State University and was taught by Dr Steven Fassnacht.
+
+My focus was on Yellowstone National Park in Wyoming. The goals of this project where to use data from various stations in the greater Yellowstone area and use the data to compute various components of the snowpack and the parameters involved. Data was pulled from the Iowa state Mesonet, Snotel and USGS

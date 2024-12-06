@@ -1,0 +1,170 @@
+---
+title: "Redistribution"
+---
+
+Billy Johnson
+
+Dr Fassnacht
+
+November 2024
+
+WR 574
+
+Redistribution
+
+Methods
+
+            To begin analysis on the registration at Yellowstone National Park ASOS station, I first used the Li and Pomeroy 1997a equation (eq 1) to calculate the U10 threshold windspeed that was directly related to temperature. The next step was to create a statement that asked if the windspeed was above the U10 threshold and then to state the snow was blowing. After this, I ran a count function to determine the number of hours that snow was blowing, and this was summarized with a bar plot (figure 1).
+
+            The next step in this project was to determine how much snow was blown around. I used the Pomeroy et al. 1991 equation (eq 2) that calculates the total snow transported. We had to multiply this value by 3.6 due to the conversion factor to get the results into meters/hr. With this quantity, I was able to calculate the cumulative sum of blowing snow and plot this over the year (Figures 2 & 3).
+
+Equations
+
+1.     *U~threshold~ = 9.43 + 0.18 T~a~ = 0.0033 T~a~^2^*
+
+2.     *Q~t~ = 0.0000022 U~10~^4.04^*  
+
+Results
+
+            Yellowstone National Park accounted for six total hours of blowing snow based on the U10 threshold. This threshold averaged 9.2 m/s throughout the year. The average wind speed throughout the year at 2 meters, which was recorded from the ASOS station, was only 0.96 m/s. This site doesn’t receive much wind, resulting in only 6 hours of strong enough wind to move snow (figure 1).
+
+Figure 1. Bar plot showing the number of hours that snow was considered blowing based on the U10 threshold from Li and Pomeroy 1997a.
+
+            Using those 6 hours of blowing snow, we calculated the total amount of transported snow through distribution as a function of wind speed. This resulted in only 0.024 m/hr of snow being blown (figure 2).
+
+Figure 2. Bar plot showing the total quantity of snow that was redistributed using the Pomeroy et al. 1991 equation (eq 2)
+
+Figure 3. Line plot showing the total cumulative snow throughout the year in Yellowstone National Park based on the Pomeroy et al. 1991 equation (eq 2).
+
+Discussion
+
+            The result that came from this analysis showed that only 5 hours of data had strong enough wind to move snow. This seems very low, but when looking at the data that was recorded at the ASOS station, we can see that the average is very low, only averaging 0.96 m/s of wind speed. When the U10 threshold averaged a value close to 10 m/s, we can assume that this event did not occur very many times.
+
+            The total amount of snow that was transported due to these wind events was also very low. With the correction of m/hr, we only see a total of 0.024 m/hr of snow moved. When we convert this back into something that is more relatable, we have 2.4 mm/hr of snow blowing. This value is still small, but with the average wind speed being so low, we don’t expect much snow to be redistributed. This station doesn’t appear to be a windy location so perhaps this is the total quantity of snow transported. I find this unlikely, but the features around this ASOS station are unknown and may have an impact on the recording of windspeed at this site.
+
+# Code
+
+#### Load in the Packages
+
+```{r}
+source("Setup_WR574 copy.R")
+```
+
+#### Load in the data
+
+```{r}
+# Soda Butte Cr at Park Boundary at Silver Gate (06187915)
+sitenumber <- "06187915"
+parametercd <- c("00060", "00010")
+startdate <- "2023-09-01"
+enddate <- "2024-08-31"
+
+rawUSGSdata <- readNWISdv(sitenumber, parametercd, startdate, enddate)
+
+```
+
+ASOS data PNA
+
+```{r}
+# ASOS RAMOS Yellowstone
+ASOS_yellowstone_original <- read_csv("DataIn/P60.csv")
+
+ASOS_clean <- read_csv("DataOut/ASOS_clean.csv")
+
+ASOS_clean_2 <- read_csv("DataOut/ASOS_clean_2.csv")
+
+ASOS_accumulation_fresh <- read_csv("DataOut/ASOS_accumulation_fresh.csv")
+```
+
+SNOTEL data location: Parker Peak (683)
+
+```{r}
+SNOTEL_Parker <- read_csv("DataIn/683_STAND_WATERYEAR=2024_clean.csv")
+
+SNOTEL_Parker_clean <- read_csv("DataOut/Snotel_clean.csv")
+```
+
+------------------------------------------------------------------------
+
+Methods.
+
+Redistribution: Compute the occurrence and quantity of blowing snow:
+
+1.  Using a threshold wind speed based solely on temperature, determine the monthly frequency of blowing snow. Plot the monthly bar chart of the occurrence of redistribution.
+
+# Question 1
+
+Monthly Frequency of blowing snow \# You need to use the threshold sand say if the tempature is at this then see if the U10 is above that threshold.
+
+```{r}
+ASOS_clean_new <- ASOS_clean_2
+
+ASOS_clean_new <- ASOS_clean_new %>% 
+  mutate(sknt = as.numeric(sknt)) %>% 
+  mutate(wind_speed_ms = sknt/1.944) %>%
+  mutate(U10 = wind_speed_ms * (log(10/0.01) / log(2/0.01))) %>% 
+  mutate(U10_thres = 9.43 + (0.18 * (tmp_c)) + (0.0033 * (tmp_c * exp (2))))
+
+
+ASOS_clean_new <- ASOS_clean_new %>% 
+  mutate(blowing = U10 > U10_thres)
+
+ASOS_clean_new %>%
+  mutate(month = month(valid)) %>%  
+  group_by(month) %>%
+  summarise(cum_blowing = sum(blowing, na.rm = TRUE)) %>% 
+  ggplot(aes(x = factor(month), y = cum_blowing)) +
+  geom_col() +
+  theme_linedraw()+
+  labs(
+    x = "Month",
+    y = "Hours of Blowing Snow"
+  )
+
+```
+
+2.  Using the Pomeroy et al. (1991) total transport equation, estimate the cumulative hourly total quantity of blowing snow. Note that snow is only moved when the threshold wind speed is met or exceeded. Plot the cumulative hourly redistribution loss.
+
+```{r}
+ASOS_clean_new <- ASOS_clean_new %>% 
+  mutate(TTE = ifelse(blowing == "TRUE", (U10 * exp(4.2)) * 0.0000022 * 3.6 , NA)) 
+
+ASOS_clean_new %>% 
+  mutate(month = month(valid)) %>% 
+  group_by(month) %>% 
+  summarise(cum_total = sum(TTE, na.rm = TRUE)) %>% 
+  ggplot(aes(x = factor(month), y = cum_total))+
+  geom_col()+
+  theme_linedraw()+
+  labs(
+    x = "Month",
+    y = "Total Snow Redistributed (m/hr)"
+  )
+
+ASOS_clean_new %>% 
+  mutate(month = month(valid)) %>% 
+  mutate(cum_sum_total = cumsum(TTE)) %>% 
+  ggplot(aes(x = factor(month), y = cum_sum_total))+
+  geom_line()+
+  theme_linedraw()
+
+
+ASOS_clean_new %>% 
+  filter(!is.na(TTE)) %>%
+  mutate(month = month(valid)) %>% 
+  arrange(valid) %>% 
+  mutate(cum_sum_total = cumsum(TTE)) %>%  
+  ggplot(aes(x = valid, y = cum_sum_total)) +  
+  geom_line() +
+  theme_linedraw() +
+  labs(
+    x = "Date",
+    y = "Cumulative Total of Blown Snow Redistribution (m/hr)"
+  )
+
+
+```
+
+```{r}
+write_csv(ASOS_clean_new, file = "DataOut/redistribution_assignemnt.csv")
+```
