@@ -8,6 +8,9 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - about.qmd
+      - text: Environmental Data Science Applications Water Resources
+        href: Projects.qmd
       - text: Snow Hydrology
         menu:
           - text: Overview

@@ -1,0 +1,118 @@
+---
+title: "Resume"
+format: html
+---
+
+# William (Billy) Johnson
+
+**Aquatic Ecology \| Cold Water Fisheries \| Ecosystems \| Water Resources \| Watershed Sciences**
+
+------------------------------------------------------------------------
+
+## Professional Summary
+
+I am an emerging aquatic ecosystem science professional known for my independence, attention to detail, and collaborative mindset. I am currently pursuing a Professional Master’s degree in Water Resources at Colorado State University.
+
+My goal is to work with a mission-driven organization to address water challenges in the Western U.S. I am a self-motivated communicator with a passion for hydrology, shaped by my upbringing in the Colorado mountains as a skier, angler, and lifelong hockey player.
+
+------------------------------------------------------------------------
+
+## Key Skills & Attributes
+
+-   Globally minded with extensive travel experience\
+-   Hydrometry field measurements\
+-   Technical proficiency in **RStudio** and **ArcGIS**\
+-   Dean’s List honoree\
+-   Strong communication & leadership\
+-   Watershed science education\
+-   Team-oriented and eager to learn\
+-   Active and enthusiastic attitude
+
+------------------------------------------------------------------------
+
+## Education
+
+**Professional Master of Science, Water Resources**\
+*Colorado State University, Fort Collins, CO*\
+*Aug 2024 – May 2025*\
+**GPA: 4.00**
+
+**Bachelor of Science, Ecosystem Science and Sustainability**\
+*Colorado State University, Fort Collins, CO*\
+*Aug 2020 – May 2024*\
+**GPA: 3.61**
+
+------------------------------------------------------------------------
+
+## Work Experience
+
+### Vail Ski Tech – Ski/Rental Technician
+
+*Winters 2022 – 2025*\
+- Provided ski equipment services during peak seasons\
+- Strengthened communication and teamwork in fast-paced environment\
+- Contributed to the top-rated ski service team in Vail Valley
+
+### Running Rivers / Colorado Parks and Wildlife / Trout Unlimited
+
+*June 2024*\
+- Conducted electrofishing surveys on Jim Creek\
+- Removed over 200 brook trout to support native Cutthroat trout populations\
+- Collected data to inform CPW stocking and restoration strategies
+
+### DCJ Construction – Training Carpenter
+
+*Summers 2020 – 2024*\
+- Gained hands-on experience with tools and construction projects\
+- Worked on municipal projects with multidisciplinary teams\
+- Honed strong work ethic and independence
+
+### Eagle River Anglers – Fly Fishing Guide
+
+*May – August 2022*\
+- Guided anglers in sustainable fishing techniques\
+- Taught river stewardship and environmental ethics\
+- Applied aquatic ecology knowledge to client education
+
+### Charter Sports – Rental/Ski Shop Technician
+
+*Jan 2018 – Mar 2020*\
+- Promoted environmentally friendly ski wax alternatives (e.g., Purl)\
+- Supported rental operations during high-demand periods
+
+------------------------------------------------------------------------
+
+## Field & Volunteer Experience (2021–2025)
+
+### Field Work
+
+-   Hydrometry and watershed surveys\
+-   Electrofishing (Jim Creek, Spring Creek)\
+-   Watershed instrumentation and planning\
+-   Atmospheric measurements (Kestrel 3000)
+
+### Volunteer Work
+
+-   CPW Jim Creek Restoration Project (2024)\
+-   Poudre River Clean-up (2022, 2023)\
+-   Eagle County Highway Cleanup (2018)\
+-   Gardener, Betty Ford Alpine Gardens, Vail
+
+------------------------------------------------------------------------
+
+## Relevant Coursework (Colorado State University)
+
+-   **Advanced Snow Hydrology** – Processes and impacts on water resources\
+-   **Watershed Measurement** – Field-based data collection skills\
+-   **Hydrometry & Land Use Hydrology** – Water quality and flow analysis\
+-   **Dust-on-Snow Research** – Capstone on albedo impacts in the San Juans\
+-   **Water Resources Planning & Management** – Infrastructure and systems\
+-   **R Programming** – Statistical analysis and data modeling\
+-   **GIS** – Spatial analysis and map creation\
+-   **Water Law** – Legal foundations and Western water policy\
+-   **Entomology Research** – Sensitive macroinvertebrate species and water quality\
+-   **Biology of Fishes** – Salmonid ecology and life history\
+-   **Sustaining Rivers in a Changing World** – Climate change effects\
+-   **River Restoration Design** – Process-based restoration planning\
+-   **Remote Sensing** – Interpreting and applying satellite data\
+-   **Modeling Watershed Hydrology** – HEC-HMS hydrologic modeling

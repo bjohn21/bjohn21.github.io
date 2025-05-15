@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -34,10 +34,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-be707b585fb907c71faeea1d25688dfc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -90,6 +90,14 @@ ul.task-list li input[type="checkbox"] {
   <li class="nav-item">
     <a class="nav-link active" href="./index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">Resume</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Projects.html"> 
+<span class="menu-text">Environmental Data Science Applications Water Resources</span></a>
   </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-snow-hydrology" role="link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -168,16 +176,21 @@ ul.task-list li input[type="checkbox"] {
   <a href="https://github.com/bjohn21" class="about-link" rel="" target="">
      <span class="about-link-text">GitHub</span>
   </a>
+  <a href="mailto:billyjohnson181@gmail.com" class="about-link" rel="" target="">
+     <span class="about-link-text">Email</span>
+  </a>
 </div>
   </div>
   <div class="about-contents"><main class="content" id="quarto-document-content">
 
 <section id="introduction" class="level2">
 <h2 data-anchor-id="introduction">Introduction</h2>
-<p>Welcome to my website. My name is William ‘Billy’ Johnson, and I am a graduate student at Colorado State University, in the professional masters of science program with a focus on Water Resources. This website is an area to showcase my work with data analysis in hydrology and related feilds.</p>
+<p>Welcome to my website! My name is William “Billy” Johnson, and I’m a graduate student at Colorado State University pursuing a Professional Master of Science in Water Resources. I created this site as a place to share and document my work in hydrology, watershed science, and cold water fisheries.</p>
+<p>My academic and professional interests focus on understanding and solving complex water challenges in the Western United States. From snowpack dynamics and streamflow modeling to remote sensing and river restoration, I enjoy working at the intersection of data science and field-based environmental research.</p>
+<p>This site showcases a range of projects through both coursework and independent research. Whether you’re interested in water resource management, aquatic ecology, or simply curious about how data and ecosystems connect, I invite you to explore and reach out.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="Images/485A1992.jpg" class="img-fluid figure-img"></p>
+<p><img src="Images/IMG_9552.jpeg" class="img-fluid figure-img"></p>
 <figcaption>William’s Image</figcaption>
 </figure>
 </div>
@@ -262,8 +275,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -374,7 +385,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

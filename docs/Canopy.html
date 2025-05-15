@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,10 +69,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-be707b585fb907c71faeea1d25688dfc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -125,6 +125,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li class="nav-item">
     <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">Resume</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Projects.html"> 
+<span class="menu-text">Environmental Data Science Applications Water Resources</span></a>
   </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-snow-hydrology" role="link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -232,18 +240,18 @@ Discussion: With these results in mind, having the highest month of interception
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"Setup_WR574 copy.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.0     ✔ readr     2.1.3
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.0
-✔ purrr     1.0.1     
+✔ dplyr     1.1.4     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.4     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
-ℹ Use the ]8;;http://conflicted.r-lib.org/conflicted package]8;; to force all conflicts to become errors
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors
 Linking to GEOS 3.10.2, GDAL 3.4.2, PROJ 8.2.1; sf_use_s2() is TRUE
 
-terra 1.7.18
+terra 1.7.65
 
 
 Attaching package: 'terra'
@@ -284,11 +292,14 @@ will be dropped in future versions, so please plan accordingly.</code></pre>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>enddate <span class="ot">&lt;-</span> <span class="st">"2024-08-31"</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>rawUSGSdata <span class="ot">&lt;-</span> <span class="fu">readNWISdv</span>(sitenumber, parametercd, startdate, enddate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>GET:https://waterservices.usgs.gov/nwis/dv/?site=06187915&amp;format=waterml%2C1.1&amp;ParameterCd=00060%2C00010&amp;StatCd=00003&amp;startDT=2023-09-01&amp;endDT=2024-08-31</code></pre>
+</div>
 </div>
 <p>ASOS data PNA</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Station number P60</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ASOS_yellowstone_original <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"DataIn/P60.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Station number P60</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ASOS_yellowstone_original <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"DataIn/P60.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: One or more parsing issues, call `problems()` on your data frame for details,
 e.g.:
@@ -306,7 +317,7 @@ dttm  (1): valid
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ASOS_CC <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"DataIn/CloudCover.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ASOS_CC <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"DataIn/CloudCover.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 7370 Columns: 12
 ── Column specification ────────────────────────────────────────────────────────
@@ -318,8 +329,8 @@ dttm (1): valid
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ASOS station in Montana. Station = West Yellowstone (WYS)</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>West_Yellow_Cloud <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"DataIn/WestYellowstone_CloudCover.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ASOS station in Montana. Station = West Yellowstone (WYS)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>West_Yellow_Cloud <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"DataIn/WestYellowstone_CloudCover.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 4488 Columns: 12
 ── Column specification ────────────────────────────────────────────────────────
@@ -331,7 +342,7 @@ dttm (1): valid
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>West_yellow_original <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"DataIn/WYS.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>West_yellow_original <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"DataIn/WYS.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 4488 Columns: 30
 ── Column specification ────────────────────────────────────────────────────────
@@ -346,7 +357,7 @@ dttm  (1): valid
 </div>
 <p>SNOTEL data location: Parker Peak (683)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>SNOTEL_Parker <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"DataIn/683_STAND_WATERYEAR=2024_clean.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>SNOTEL_Parker <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"DataIn/683_STAND_WATERYEAR=2024_clean.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 341 Columns: 10
 ── Column specification ────────────────────────────────────────────────────────
@@ -364,85 +375,85 @@ lgl (1): Time
 <section id="workflow" class="level1">
 <h1>Workflow</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean the data and save the new dataframe</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>ASOS_accumulation <span class="ot">&lt;-</span> ASOS_yellowstone_original <span class="sc">%&gt;%</span> </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">c</span>(valid, tmpf, p01i, relh, sknt)) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tmp_c =</span> (<span class="dv">5</span><span class="sc">/</span><span class="dv">9</span> <span class="sc">*</span> (tmpf <span class="sc">-</span> <span class="dv">32</span>))) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Td =</span> tmp_c <span class="sc">-</span> ((<span class="dv">100</span> <span class="sc">-</span> relh)<span class="sc">/</span><span class="dv">5</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">P_mm =</span> p01i <span class="sc">*</span> <span class="fl">25.4</span>)</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>ASOS_accumulation_clean <span class="ot">&lt;-</span> ASOS_accumulation <span class="sc">%&gt;%</span> </span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(tmp_c <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> Td <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(p01i <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sknt <span class="sc">&lt;</span> <span class="dv">10</span>)</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a column that calculates the cumulative sum</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>ASOS_accumulation_clean <span class="ot">&lt;-</span> ASOS_accumulation_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">P_mm =</span> p01i <span class="sc">*</span> <span class="fl">24.5</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cumm_prec =</span> <span class="fu">cumsum</span>(P_mm)) </span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(ASOS_accumulation_clean, <span class="at">file =</span> <span class="st">"DataOut/ASOS_clean.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean the data and save the new dataframe</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>ASOS_accumulation <span class="ot">&lt;-</span> ASOS_yellowstone_original <span class="sc">%&gt;%</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">c</span>(valid, tmpf, p01i, relh, sknt)) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tmp_c =</span> (<span class="dv">5</span><span class="sc">/</span><span class="dv">9</span> <span class="sc">*</span> (tmpf <span class="sc">-</span> <span class="dv">32</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Td =</span> tmp_c <span class="sc">-</span> ((<span class="dv">100</span> <span class="sc">-</span> relh)<span class="sc">/</span><span class="dv">5</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">P_mm =</span> p01i <span class="sc">*</span> <span class="fl">25.4</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>ASOS_accumulation_clean <span class="ot">&lt;-</span> ASOS_accumulation <span class="sc">%&gt;%</span> </span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(tmp_c <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> Td <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(p01i <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sknt <span class="sc">&lt;</span> <span class="dv">10</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a column that calculates the cumulative sum</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>ASOS_accumulation_clean <span class="ot">&lt;-</span> ASOS_accumulation_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">P_mm =</span> p01i <span class="sc">*</span> <span class="fl">24.5</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cumm_prec =</span> <span class="fu">cumsum</span>(P_mm)) </span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(ASOS_accumulation_clean, <span class="at">file =</span> <span class="st">"DataOut/ASOS_clean.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define constants</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>LAI_winter <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>LAI_summer <span class="ot">&lt;-</span> <span class="dv">4</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>f_veg <span class="ot">&lt;-</span> <span class="fl">0.9</span>  </span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>threshold_temp <span class="ot">&lt;-</span> <span class="dv">0</span>  </span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>area_km2 <span class="ot">&lt;-</span> <span class="fl">80.03063</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>area_veg_km2 <span class="ot">&lt;-</span> area_km2 <span class="sc">*</span> f_veg  </span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate interception</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>ASOS_accumulation_2 <span class="ot">&lt;-</span> ASOS_accumulation <span class="sc">%&gt;%</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">season =</span> <span class="fu">if_else</span>(<span class="fu">month</span>(valid) <span class="sc">==</span> <span class="dv">6</span>, <span class="st">"summer"</span>, <span class="st">"winter"</span>),  </span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">LAI =</span> <span class="fu">if_else</span>(season <span class="sc">==</span> <span class="st">"summer"</span>, LAI_summer, LAI_winter),  </span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">precipitation_type =</span> <span class="fu">if_else</span>(tmp_c <span class="sc">&gt;=</span> threshold_temp, <span class="st">"rain"</span>, <span class="st">"snow"</span>),  </span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">interception =</span> <span class="fu">case_when</span>(</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>      precipitation_type <span class="sc">==</span> <span class="st">"rain"</span> <span class="sc">~</span> P_mm <span class="sc">*</span> LAI <span class="sc">*</span> f_veg,</span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>      precipitation_type <span class="sc">==</span> <span class="st">"snow"</span> <span class="sc">~</span> P_mm <span class="sc">*</span> LAI <span class="sc">*</span> f_veg,</span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set interception to zero 6 hours after the storm</span></span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">interception =</span> <span class="fu">if_else</span>(valid <span class="sc">%in%</span> (valid <span class="sc">+</span> <span class="fu">hours</span>(<span class="dv">6</span>)), <span class="dv">0</span>, interception)</span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Calculate monthly averages</span></span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>Monthly_Interception <span class="ot">&lt;-</span> ASOS_accumulation_2 <span class="sc">%&gt;%</span></span>
-<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">month =</span> <span class="fu">month</span>(valid, <span class="at">label =</span> <span class="cn">TRUE</span>), <span class="at">year =</span> <span class="fu">year</span>(valid)) <span class="sc">%&gt;%</span></span>
-<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_interception_all =</span> <span class="fu">sum</span>(interception, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_hours =</span> <span class="fu">n</span>(),</span>
-<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_interception_all =</span> total_interception_all <span class="sc">/</span> total_hours,</span>
-<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_interception_storm =</span> <span class="fu">sum</span>(interception[P_mm <span class="sc">&gt;</span> <span class="dv">0</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">storm_hours =</span> <span class="fu">sum</span>(P_mm <span class="sc">&gt;</span> <span class="dv">0</span>),  </span>
-<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_interception_storm =</span> <span class="fu">if_else</span>(storm_hours <span class="sc">&gt;</span> <span class="dv">0</span>, total_interception_storm <span class="sc">/</span> storm_hours, <span class="dv">0</span>) </span>
-<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define constants</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>LAI_winter <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>LAI_summer <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>f_veg <span class="ot">&lt;-</span> <span class="fl">0.9</span>  </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>threshold_temp <span class="ot">&lt;-</span> <span class="dv">0</span>  </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>area_km2 <span class="ot">&lt;-</span> <span class="fl">80.03063</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>area_veg_km2 <span class="ot">&lt;-</span> area_km2 <span class="sc">*</span> f_veg  </span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate interception</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>ASOS_accumulation_2 <span class="ot">&lt;-</span> ASOS_accumulation <span class="sc">%&gt;%</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">season =</span> <span class="fu">if_else</span>(<span class="fu">month</span>(valid) <span class="sc">==</span> <span class="dv">6</span>, <span class="st">"summer"</span>, <span class="st">"winter"</span>),  </span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">LAI =</span> <span class="fu">if_else</span>(season <span class="sc">==</span> <span class="st">"summer"</span>, LAI_summer, LAI_winter),  </span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">precipitation_type =</span> <span class="fu">if_else</span>(tmp_c <span class="sc">&gt;=</span> threshold_temp, <span class="st">"rain"</span>, <span class="st">"snow"</span>),  </span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">interception =</span> <span class="fu">case_when</span>(</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>      precipitation_type <span class="sc">==</span> <span class="st">"rain"</span> <span class="sc">~</span> P_mm <span class="sc">*</span> LAI <span class="sc">*</span> f_veg,</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>      precipitation_type <span class="sc">==</span> <span class="st">"snow"</span> <span class="sc">~</span> P_mm <span class="sc">*</span> LAI <span class="sc">*</span> f_veg,</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set interception to zero 6 hours after the storm</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">interception =</span> <span class="fu">if_else</span>(valid <span class="sc">%in%</span> (valid <span class="sc">+</span> <span class="fu">hours</span>(<span class="dv">6</span>)), <span class="dv">0</span>, interception)</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Calculate monthly averages</span></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>Monthly_Interception <span class="ot">&lt;-</span> ASOS_accumulation_2 <span class="sc">%&gt;%</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">month =</span> <span class="fu">month</span>(valid, <span class="at">label =</span> <span class="cn">TRUE</span>), <span class="at">year =</span> <span class="fu">year</span>(valid)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_interception_all =</span> <span class="fu">sum</span>(interception, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_hours =</span> <span class="fu">n</span>(),</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_interception_all =</span> total_interception_all <span class="sc">/</span> total_hours,</span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_interception_storm =</span> <span class="fu">sum</span>(interception[P_mm <span class="sc">&gt;</span> <span class="dv">0</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">storm_hours =</span> <span class="fu">sum</span>(P_mm <span class="sc">&gt;</span> <span class="dv">0</span>),  </span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_interception_storm =</span> <span class="fu">if_else</span>(storm_hours <span class="sc">&gt;</span> <span class="dv">0</span>, total_interception_storm <span class="sc">/</span> storm_hours, <span class="dv">0</span>) </span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`summarise()` has grouped output by 'month'. You can override using the
 `.groups` argument.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(Monthly_Interception, <span class="at">file =</span> <span class="st">"DataOut/Monthly_Interception.csv"</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(Monthly_Interception)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(Monthly_Interception, <span class="at">file =</span> <span class="st">"DataOut/Monthly_Interception.csv"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(Monthly_Interception)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 12 × 8
-   month  year total_interception_all total_ho…¹ avg_i…² total…³ storm…⁴ avg_i…⁵
-   &lt;ord&gt; &lt;dbl&gt;                  &lt;dbl&gt;      &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;int&gt;   &lt;dbl&gt;
- 1 Jan    2024                  0.114        727 1.57e-4   0.114      70 0.00163
- 2 Feb    2024                  0            692 0         0         139 0      
- 3 Mar    2024                  0.343        742 4.62e-4   0.343     150 0.00229
- 4 Apr    2024                  0.572        546 1.05e-3   0.572      50 0.0114 
- 5 May    2024                  3.43         604 5.68e-3   3.43       78 0.0440 
- 6 Jun    2024                  5.49         688 7.97e-3   5.49       21 0.261  
- 7 Jul    2024                  0            140 0         0           4 0      
- 8 Aug    2024                  2.74         421 6.52e-3   2.74       17 0.161  
- 9 Sep    2023                  1.37         651 2.11e-3   1.37       46 0.0298 
-10 Oct    2023                  0            736 0         0          75 0      
-11 Nov    2023                  0.457        679 6.73e-4   0.457      53 0.00863
-12 Dec    2023                  0            744 0         0          64 0      
-# … with abbreviated variable names ¹​total_hours, ²​avg_interception_all,
-#   ³​total_interception_storm, ⁴​storm_hours, ⁵​avg_interception_storm</code></pre>
+   month  year total_interception_all total_hours avg_interception_all
+   &lt;ord&gt; &lt;dbl&gt;                  &lt;dbl&gt;       &lt;int&gt;                &lt;dbl&gt;
+ 1 Jan    2024                  0.114         727             0.000157
+ 2 Feb    2024                  0             692             0       
+ 3 Mar    2024                  0.343         742             0.000462
+ 4 Apr    2024                  0.572         546             0.00105 
+ 5 May    2024                  3.43          604             0.00568 
+ 6 Jun    2024                  5.49          688             0.00797 
+ 7 Jul    2024                  0             140             0       
+ 8 Aug    2024                  2.74          421             0.00652 
+ 9 Sep    2023                  1.37          651             0.00211 
+10 Oct    2023                  0             736             0       
+11 Nov    2023                  0.457         679             0.000673
+12 Dec    2023                  0             744             0       
+# ℹ 3 more variables: total_interception_storm &lt;dbl&gt;, storm_hours &lt;int&gt;,
+#   avg_interception_storm &lt;dbl&gt;</code></pre>
 </div>
 </div>
 
@@ -532,8 +543,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -644,7 +653,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

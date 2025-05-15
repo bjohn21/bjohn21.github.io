@@ -1,0 +1,20 @@
+---
+title: "ESS 523c: Projects"
+format: html
+---
+
+## Lab 01: [Covid-19 Trends](https://bjohn21.github.io/gitHub_523c/Lab01.html)
+
+In this Lab we practiced data wrangling and visualization skills using COVID-19 data that was curated by the New York Times. In this lab we used tidyverse, flextable, and zoo.
+
+## Lab 02: [Working with Vector Data - Border Summaries](https://bjohn21.github.io/gitHub_523c/Lab02.html)
+
+This lab focused on exploring the properties of sf, sfc, sfg features and objects. In this lab we used new packages of sf, units, USAboundaries, rnaturalearth, gghighlight, ggrepel, and knitr. Though this lab we calculated the distances between features. We employed projection skills to compare and analyse distances from borders in the United States.
+
+## Lab 03: [Dams In the United States](https://bjohn21.github.io/gitHub_523c/Lab03.html)
+
+In this lab we explored the impacts of tessellated surfaces and the modifiable areal unit problem (MAUP) using the National Dam Inventory. This is maintained by the US Army Corps of Engineers. In this lab we wrote functions, to visualize the distribution of dams and there purposes across the county.
+
+## Lab 04: [Rasters & Remote Sensing - Palo Iowa Flooding](https://bjohn21.github.io/gitHub_523c/Lab04.html)
+
+The focus of Lab 4 was to explore the impacts of flooding in Palo Iowa. This lab explored a real event that occurred on September 26, 2016, when rivers in the area surged producing a flood that recorded water levels 8 feet above flood stage. In the analysis we used terra and rstac packages to create flooding images using multi-band Landsat Imagery, thresholding and classification methods.

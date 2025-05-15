@@ -8,6 +8,8 @@ about:
       href: https://www.linkedin.com/in/johnsonbwilliam/
     - text: GitHub
       href: https://github.com/bjohn21
+    - text: Email
+      href: mailto:billyjohnson181@gmail.com
 project:
   type: website
   output-dir: docs
@@ -15,7 +17,12 @@ project:
 
 ## Introduction
 
-Welcome to my website. My name is William 'Billy' Johnson, and I am a graduate student at Colorado State University, in the professional masters of science program with a focus on Water Resources. This website is an area to showcase my work with data analysis in hydrology and related feilds. 
+Welcome to my website! My name is William “Billy” Johnson, and I’m a graduate student at Colorado State University pursuing a Professional Master of Science in Water Resources. I created this site as a place to share and document my work in hydrology, watershed science, and cold water fisheries.
 
-![William's Image](Images/485A1992.jpg)
+My academic and professional interests focus on understanding and solving complex water challenges in the Western United States. From snowpack dynamics and streamflow modeling to remote sensing and river restoration, I enjoy working at the intersection of data science and field-based environmental research.
+
+This site showcases a range of projects through both coursework and independent research. Whether you're interested in water resource management, aquatic ecology, or simply curious about how data and ecosystems connect, I invite you to explore and reach out.
+
+
+![William's Image](Images/IMG_9552.jpeg)
 
